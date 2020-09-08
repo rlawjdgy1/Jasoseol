@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from .forms import JssForm
 from .models import Jasoseol
 from django.http import Http404
@@ -18,7 +18,10 @@ def create(request):
     return render(request, 'create.html', {'jss_form' :jss_form})
 
 def detail(request, jss_id):
-     my_jss = get_object_or_404(Jasoseol, pk=jss_id)
+    try:
+        my_jss = Jasoseol.objects.get(pk=jss_id)
+    except:
+        raise Http404
 
     return render(request, 'detail.html', {'my_jss' :my_jss})
 
