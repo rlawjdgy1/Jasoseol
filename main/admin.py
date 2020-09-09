@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Jasoseol
-
-# Register your models here.
+from .models import Jasoseol, Comment
 
 admin.site.register(Jasoseol)
+admin.site.register(Comment)
