@@ -9,9 +9,12 @@ def index(request):
     return render(request, 'index.html', {'all_jss':all_jss})
 
 def create(request):
+    print(request.user)
     if request.method == "POST":
         filled_form = JssForm(request.POST)
         if filled_form.is_valid():
+            temp_form = filled_form.save(commit=false)
+            temp_form.author = request.user
             filled_form.save()
             return redirect('index')
     jss_form = JssForm()
